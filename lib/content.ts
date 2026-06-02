@@ -20,6 +20,7 @@ export interface Speaker {
   role: string;
   org: string;
   tentative?: boolean;
+  imgSrc: string;
 }
 
 export const SPEAKERS: Speaker[] = [
@@ -30,6 +31,7 @@ export const SPEAKERS: Speaker[] = [
     initials: "AF",
     role: "VP Brand & Marketing Comm.",
     org: "Telkomsel",
+    imgSrc: "/speakers/Abdullah-fahmi.png",
   },
   {
     id: "hera-haryn",
@@ -38,6 +40,7 @@ export const SPEAKERS: Speaker[] = [
     initials: "HH",
     role: "Executive Vice President",
     org: "PT Bank Central Asia Tbk",
+    imgSrc: "/speakers/Hera-F-Haryn.png",
   },
   {
     id: "windy-riswantyo",
@@ -46,6 +49,7 @@ export const SPEAKERS: Speaker[] = [
     initials: "WR",
     role: "Head of Corporate Comm.",
     org: "PT Astra International Tbk",
+    imgSrc: "/speakers/Windy-Riswantyo.png",
   },
   {
     id: "ra-koesoemohadiani",
@@ -54,6 +58,7 @@ export const SPEAKERS: Speaker[] = [
     initials: "RK",
     role: "Corporate Secretary",
     org: "GoTo Group",
+    imgSrc: "/speakers/R-A-Koesoemohadiani.png",
   },
   {
     id: "stephanie-susilo",
@@ -62,6 +67,7 @@ export const SPEAKERS: Speaker[] = [
     initials: "SS",
     role: "Executive Director",
     org: "Tokopedia & TikTok E-commerce ID",
+    imgSrc: "/speakers/Stephanie-Susilo.png",
   },
   {
     id: "rebby-noviar",
@@ -70,6 +76,7 @@ export const SPEAKERS: Speaker[] = [
     initials: "RN",
     role: "Creative Director",
     org: "inilah.com",
+    imgSrc: "/speakers/Rebby-Noviar.png",
   },
   {
     id: "meutya-hafid",
@@ -79,6 +86,7 @@ export const SPEAKERS: Speaker[] = [
     role: "Menteri Komunikasi & Digital RI",
     org: "Kementerian Komdigi",
     tentative: true,
+    imgSrc: "/speakers/Meutya-Hafid.png",
   },
   {
     id: "agustini-rahayu",
@@ -87,6 +95,7 @@ export const SPEAKERS: Speaker[] = [
     initials: "AR",
     role: "Deputi Bidang Kreativitas Media",
     org: "Kementerian Ekonomi Kreatif",
+    imgSrc: "/speakers/Agustini-Rahayu.png",
   },
 ];
 
