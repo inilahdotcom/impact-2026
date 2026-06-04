@@ -15,6 +15,17 @@ import { db } from "@/lib/firebase";
 const schema = z.object({
   name: z.string().trim().min(2, "Nama minimal 2 karakter"),
   email: z.string().trim().email("Email tidak valid"),
+  whatsapp: z
+    .string()
+    .trim()
+    .min(1, "Nomor WhatsApp wajib diisi")
+    .refine(
+      (v) => {
+        const digits = v.replace(/\D/g, "");
+        return digits.length >= 9 && digits.length <= 15;
+      },
+      "Nomor WhatsApp tidak valid (9–15 digit)"
+    ),
   category: z.string().min(1, "Pilih kategori"),
   org: z.string().optional(),
 });
@@ -42,7 +53,7 @@ export function Register() {
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
-    defaultValues: { name: "", email: "", category: "", org: "" },
+    defaultValues: { name: "", email: "", whatsapp: "", category: "", org: "" },
     mode: "onTouched",
   });
 
@@ -52,6 +63,7 @@ export function Register() {
       await addDoc(collection(db, "registrations"), {
         name: values.name,
         email: values.email,
+        whatsapp: values.whatsapp.replace(/\s+/g, ""),
         category: values.category,
         org: values.org ?? "",
         status: "pending_review",
@@ -144,6 +156,33 @@ export function Register() {
                   />
                   {errors.email && (
                     <p className={ERR_CLS}>{errors.email.message}</p>
+                  )}
+                </div>
+
+                <div className="mb-4">
+                  <label htmlFor="reg-wa" className={LABEL_CLS}>
+                    Nomor WhatsApp
+                  </label>
+                  <input
+                    id="reg-wa"
+                    type="tel"
+                    inputMode="tel"
+                    placeholder="+62 812 3456 7890"
+                    autoComplete="tel"
+                    aria-invalid={!!errors.whatsapp}
+                    aria-describedby="reg-wa-hint"
+                    {...register("whatsapp")}
+                    className={FIELD_CLS}
+                  />
+                  {errors.whatsapp ? (
+                    <p className={ERR_CLS}>{errors.whatsapp.message}</p>
+                  ) : (
+                    <p
+                      id="reg-wa-hint"
+                      className="mt-1.5 text-[11px] text-white/40"
+                    >
+                      Gunakan kode negara, mis. +62 untuk Indonesia.
+                    </p>
                   )}
                 </div>
 
