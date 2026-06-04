@@ -312,8 +312,11 @@ export const FOOTER_COLS = [
     title: "Kontak",
     links: [
       { label: "partnership@inilah.com", href: "mailto:partnership@inilah.com" },
-      { label: "PIK2 Signature Gallery", href: "#" },
-      { label: "@inilah.com", href: "#" },
+      {
+        label: "PIK2 Signature Gallery",
+        href: "https://maps.google.com/?q=PIK2+Signature+Gallery+Jakarta",
+      },
+      { label: "@inilah.com", href: "https://www.instagram.com/inilah.com" },
     ],
   },
 ] as const;

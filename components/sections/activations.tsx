@@ -3,11 +3,18 @@ import { ACTIVATIONS } from "@/lib/content";
 
 export function Activations() {
   return (
-    <section id="activations" className="py-24">
+    <section
+      id="activations"
+      aria-labelledby="activations-heading"
+      className="py-24"
+    >
       <div className="wrap">
         <Reveal className="mb-[54px] max-w-[760px]">
           <span className="eyebrow">The Experience</span>
-          <h2 className="mt-3.5 text-[clamp(34px,5vw,60px)] uppercase">
+          <h2
+            id="activations-heading"
+            className="mt-3.5 text-[clamp(34px,5vw,60px)] uppercase"
+          >
             Activations &amp; <span className="text-[var(--red)]">Engagement</span>
           </h2>
           <p className="mt-[18px] max-w-[620px] text-[17px] text-[var(--muted)]">

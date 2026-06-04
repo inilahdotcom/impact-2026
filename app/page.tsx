@@ -10,10 +10,12 @@ import { Agenda } from "@/components/sections/agenda";
 import { Activations } from "@/components/sections/activations";
 import { Sponsorship } from "@/components/sections/sponsorship";
 import { Register } from "@/components/sections/register";
+import { JsonLd } from "@/components/seo/json-ld";
 
 export default function Page() {
   return (
     <>
+      <JsonLd />
       <Header />
       <main>
         <Hero />

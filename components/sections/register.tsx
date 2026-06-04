@@ -5,10 +5,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Check } from "lucide-react";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { Reveal } from "@/components/ui/reveal";
 import { REGISTER_CATEGORIES } from "@/lib/content";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { db } from "@/lib/firebase";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Nama minimal 2 karakter"),
@@ -32,6 +34,7 @@ const REGISTER_BG = {
 
 export function Register() {
   const [done, setDone] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const {
     register,
@@ -43,22 +46,41 @@ export function Register() {
     mode: "onTouched",
   });
 
-  const onSubmit = handleSubmit(async () => {
-    // No backend — simulate brief async work and show success state.
-    await new Promise((r) => setTimeout(r, 250));
-    setDone(true);
+  const onSubmit = handleSubmit(async (values) => {
+    setSubmitError(null);
+    try {
+      await addDoc(collection(db, "registrations"), {
+        name: values.name,
+        email: values.email,
+        category: values.category,
+        org: values.org ?? "",
+        status: "pending_review",
+        source: "impact-2026-microsite",
+        createdAt: serverTimestamp(),
+      });
+      setDone(true);
+    } catch (err) {
+      console.error("Firestore submit failed:", err);
+      setSubmitError(
+        "Gagal menyimpan pengajuan. Periksa koneksi Anda lalu coba lagi."
+      );
+    }
   });
 
   return (
     <section
       id="register"
+      aria-labelledby="register-heading"
       className="py-24 text-white"
       style={REGISTER_BG}
     >
       <div className="wrap grid grid-cols-1 items-center gap-9 lg:grid-cols-2 lg:gap-[60px]">
         <Reveal>
           <span className="eyebrow !text-[var(--red-bright)]">Curated Registration</span>
-          <h2 className="mt-3.5 text-[clamp(34px,5vw,56px)] uppercase text-white">
+          <h2
+            id="register-heading"
+            className="mt-3.5 text-[clamp(34px,5vw,56px)] uppercase text-white"
+          >
             Amankan <span className="text-[var(--red-bright)]">Kursi</span> Anda
           </h2>
           <p className="mt-[18px] text-[16px] text-white/70">
@@ -169,6 +191,15 @@ export function Register() {
                 >
                   {isSubmitting ? "Mengirim…" : "Ajukan Kehadiran"}
                 </button>
+
+                {submitError && (
+                  <p
+                    role="alert"
+                    className="mt-4 border border-[var(--red-bright)]/40 bg-[var(--red)]/15 px-3.5 py-3 text-[13px] text-white"
+                  >
+                    {submitError}
+                  </p>
+                )}
               </form>
             )}
           </div>

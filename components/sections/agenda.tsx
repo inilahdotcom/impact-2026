@@ -9,11 +9,18 @@ export function Agenda() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 
   return (
-    <section id="agenda" className="bg-[var(--paper-2)] py-24">
+    <section
+      id="agenda"
+      aria-labelledby="agenda-heading"
+      className="bg-[var(--paper-2)] py-24"
+    >
       <div className="wrap">
         <Reveal className="mb-[54px] max-w-[760px]">
           <span className="eyebrow">Rundown · 17 Juni 2026</span>
-          <h2 className="mt-3.5 text-[clamp(34px,5vw,60px)] uppercase">
+          <h2
+            id="agenda-heading"
+            className="mt-3.5 text-[clamp(34px,5vw,60px)] uppercase"
+          >
             Susunan <span className="text-[var(--red)]">Acara</span>
           </h2>
           <p className="mt-[18px] max-w-[620px] text-[17px] text-[var(--muted)]">
@@ -42,9 +49,12 @@ export function Agenda() {
                   onClick={() => setOpenIdx(open ? null : i)}
                   className="grid w-full cursor-pointer grid-cols-[90px_1fr_24px] items-center gap-2.5 px-4 py-5 text-left sm:grid-cols-[130px_1fr_30px] sm:gap-5"
                 >
-                  <span className="text-[13px] font-extrabold tabular-nums text-[var(--red)] sm:text-[15px]">
+                  <time
+                    dateTime={`2026-06-17T${item.time.replace(".", ":")}:00+07:00`}
+                    className="text-[13px] font-extrabold tabular-nums text-[var(--red)] sm:text-[15px]"
+                  >
                     {item.time}
-                  </span>
+                  </time>
                   <span className="text-[15px] font-bold sm:text-[17px]">
                     {item.title}
                     {item.featured && (

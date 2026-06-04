@@ -17,25 +17,58 @@ export function Footer() {
           </div>
 
           <div className="flex flex-wrap gap-[60px]">
-            {FOOTER_COLS.map((col) => (
-              <div key={col.title}>
-                <h5 className="mb-3.5 text-[12px] font-extrabold uppercase tracking-[0.1em] text-white">
-                  {col.title}
-                </h5>
-                <ul className="space-y-2">
-                  {col.links.map((l) => (
-                    <li key={l.label}>
-                      <a
-                        href={l.href}
-                        className="text-sm text-white/60 transition-colors hover:text-[var(--red-bright)]"
-                      >
-                        {l.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            {FOOTER_COLS.map((col) => {
+              const isContact = col.title === "Kontak";
+              const linkClass =
+                "text-sm text-white/60 transition-colors hover:text-[var(--red-bright)]";
+              return (
+                <div key={col.title}>
+                  <h3 className="mb-3.5 text-[12px] font-extrabold uppercase tracking-[0.1em] text-white">
+                    {col.title}
+                  </h3>
+                  {isContact ? (
+                    <address className="flex flex-col gap-2 not-italic">
+                      {col.links.map((l) => {
+                        const external = l.href.startsWith("http");
+                        return (
+                          <a
+                            key={l.label}
+                            href={l.href}
+                            {...(external && {
+                              target: "_blank",
+                              rel: "noopener noreferrer",
+                            })}
+                            className={linkClass}
+                          >
+                            {l.label}
+                          </a>
+                        );
+                      })}
+                    </address>
+                  ) : (
+                    <ul className="space-y-2">
+                      {col.links.map((l) => {
+                        const external = l.href.startsWith("http");
+                        return (
+                          <li key={l.label}>
+                            <a
+                              href={l.href}
+                              {...(external && {
+                                target: "_blank",
+                                rel: "noopener noreferrer",
+                              })}
+                              className={linkClass}
+                            >
+                              {l.label}
+                            </a>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
 

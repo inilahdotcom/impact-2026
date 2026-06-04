@@ -3,11 +3,17 @@ import { STATS } from "@/lib/content";
 
 export function Stats() {
   return (
-    <section className="bg-[var(--red)] py-24 text-white">
+    <section
+      aria-labelledby="stats-heading"
+      className="bg-[var(--red)] py-24 text-white"
+    >
       <div className="wrap">
         <Reveal className="mb-10 max-w-[760px]">
           <span className="eyebrow !text-white">Event Exposure</span>
-          <h2 className="mt-3.5 text-[clamp(34px,5vw,60px)] uppercase text-white">
+          <h2
+            id="stats-heading"
+            className="mt-3.5 text-[clamp(34px,5vw,60px)] uppercase text-white"
+          >
             Skala Dampaknya
           </h2>
         </Reveal>

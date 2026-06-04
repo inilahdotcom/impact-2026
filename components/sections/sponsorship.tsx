@@ -5,11 +5,18 @@ import { cn } from "@/lib/utils";
 
 export function Sponsorship() {
   return (
-    <section id="sponsor" className="bg-[var(--navy)] py-24 text-white">
+    <section
+      id="sponsor"
+      aria-labelledby="sponsor-heading"
+      className="bg-[var(--navy)] py-24 text-white"
+    >
       <div className="wrap">
         <Reveal className="mb-[54px] max-w-[760px]">
           <span className="eyebrow">Partnership</span>
-          <h2 className="mt-3.5 text-[clamp(34px,5vw,60px)] uppercase text-white">
+          <h2
+            id="sponsor-heading"
+            className="mt-3.5 text-[clamp(34px,5vw,60px)] uppercase text-white"
+          >
             Kenapa <span className="text-[var(--red-bright)]">Bersponsor?</span>
           </h2>
           <p className="mt-[18px] max-w-[620px] text-[17px] text-white/70">
@@ -95,7 +102,7 @@ export function Sponsorship() {
                   className={cn(
                     "w-full text-center",
                     featured
-                      ? "bg-white px-6 py-[15px] text-[15px] font-extrabold uppercase tracking-[0.01em] text-[var(--red)] transition-colors hover:bg-[var(--ink)] hover:text-white"
+                      ? "border-white border-3 px-6 py-[15px] text-[15px] font-extrabold uppercase tracking-[0.01em] text-[var(--red)] transition-colors hover:bg-[var(--ink)] hover:text-white"
                       : buttonVariants({
                           variant: "ghost-white",
                           size: "editorial-block",

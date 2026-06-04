@@ -13,11 +13,18 @@ const COLS = [
 
 export function Shift() {
   return (
-    <section id="shift" className="relative bg-[var(--ink)] py-24 text-white">
+    <section
+      id="shift"
+      aria-labelledby="shift-heading"
+      className="relative bg-[var(--ink)] py-24 text-white"
+    >
       <div className="wrap">
         <Reveal className="mb-[54px] max-w-[760px]">
           <span className="eyebrow">The Great Shift</span>
-          <h2 className="mt-3.5 text-[clamp(34px,5vw,60px)] uppercase text-white">
+          <h2
+            id="shift-heading"
+            className="mt-3.5 text-[clamp(34px,5vw,60px)] uppercase text-white"
+          >
             From Information
             <br />
             to <span className="text-[var(--red-bright)]">Influence</span>

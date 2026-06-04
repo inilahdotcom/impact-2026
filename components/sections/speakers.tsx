@@ -18,11 +18,18 @@ export function Speakers() {
   const [filter, setFilter] = useState<Filter>("all");
 
   return (
-    <section id="speakers" className="py-24">
+    <section
+      id="speakers"
+      aria-labelledby="speakers-heading"
+      className="py-24"
+    >
       <div className="wrap">
         <Reveal className="mb-[54px] max-w-[760px]">
           <span className="eyebrow">Visionary Voices &amp; Panelists</span>
-          <h2 className="mt-3.5 text-[clamp(34px,5vw,60px)] uppercase">
+          <h2
+            id="speakers-heading"
+            className="mt-3.5 text-[clamp(34px,5vw,60px)] uppercase"
+          >
             Para <span className="text-[var(--red)]">Pembicara</span>
           </h2>
           <p className="mt-[18px] max-w-[620px] text-[17px] text-[var(--muted)]">
@@ -64,7 +71,7 @@ export function Speakers() {
                 <div className="relative h-[200px] overflow-hidden bg-gradient-to-br from-[var(--navy)] to-[var(--navy-2)]">
                   <Image
                     src={s.imgSrc}
-                    alt={s.name}
+                    alt={`${s.name} — ${s.role}, ${s.org} · pembicara IMPACT Digital Media Forum 2026`}
                     fill
                     sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                     className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
